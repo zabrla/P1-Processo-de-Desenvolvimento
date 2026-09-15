@@ -3,6 +3,9 @@
 {% block title %}Criptografar mensagem{% endblock %}
 
 {% block content %}
+
+{% include 'partials/_sidebar.html' %}
+
 <form method="post" action="{% url 'criptografar' %}">
     {% csrf_token %}
     <input type="hidden" name="acao" value="criptografar">
