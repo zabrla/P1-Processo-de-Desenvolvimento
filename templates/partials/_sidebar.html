@@ -1,0 +1,19 @@
+{# templates/partials/_sidebar.html #}
+<aside>
+    <div>
+
+        <div class="avatar-placeholder"></div>
+        <p>{{ request.user.username }}</p>
+        
+    </div>
+
+    <nav>
+        <a href="#">Historico</a>
+        <a href="#">Logs</a>
+
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Sair</button>
+        </form>
+    </nav>
+</aside>
