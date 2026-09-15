@@ -1,12 +1,11 @@
-# mensagens/views.py
-from django.contrib.auth.decorators import login_required
+# from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.http import HttpResponse
 
 # from .bst_core import criptografar_mensagem      # ajustar import certo
 # from .bst_visualizacao import gerar_imagem_arvore
 
-@login_required
+#@login_required
 def criptografar(request):
     contexto = {}
 
@@ -28,7 +27,7 @@ def criptografar(request):
     return render(request, 'criptografar.html', contexto)
 
 
-@login_required
+#@login_required
 def salvar_arquivo(request):
     mensagem_cifrada = request.session.get('mensagem_cifrada')
 
