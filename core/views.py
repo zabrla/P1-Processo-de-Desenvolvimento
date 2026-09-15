@@ -13,6 +13,7 @@ def cadastro_view(request):
             return redirect("core:login")
     else:
         form = CadastroForm()
+
     return render(request, "core/cadastro.html", {"form": form})
 
 

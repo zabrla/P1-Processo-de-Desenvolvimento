@@ -34,16 +34,17 @@ class CadastroForm(forms.Form):
         error_messages={"required": "Confirme a senha."},
     )
 
-    def limpa_email(self):
-        email = self.cleaned_data["email"].strp().lower()
-        if User.objects.filter(email__iexact = email).exists():
+    def clean_email(self):
+        email = self.cleaned_data.get("email", "").strip().lower()
+        if User.objects.filter(email__iexact=email).exists():
             raise ValidationError("Já existe uma conta cadastrada com esse email.")
         return email
 
-    def limpa_senha(self):
+    def clean_senha(self):
         senha = self.cleaned_data.get("senha", "")
         if not any(char.isdigit() for char in senha):
-            raise ValidationError("A senha precisa ter um numero.")
+            raise ValidationError("A senha precisa ter um número.")
+        return senha
 
     def clean(self):
         cleaned = super().clean()
