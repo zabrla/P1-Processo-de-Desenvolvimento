@@ -19,6 +19,10 @@
     <button type="submit" name="acao" value="descriptografar">Descriptografar</button>
 </form>
 
+{% if erro %}
+    <p style="color: red;">{{ erro }}</p>
+{% endif %}
+
 {% if mensagem_decifrada %}
     <p>Mensagem descriptografada:</p>
     <pre>{{ mensagem_decifrada }}</pre>
