@@ -59,11 +59,8 @@ def descriptografar(request):
             # mensagem_decifrada, arvore = descriptografar_mensagem(mensagem)
             # imagem_path = gerar_imagem_arvore(arvore)
 
-            mensagem_decifrada = f"[decifrado] {mensagem}"  # placeholder pra testar o template
-            imagem_path = None
-
             contexto['mensagem'] = mensagem
-            contexto['mensagem_decifrada'] = mensagem_decifrada
-            contexto['imagem_arvore'] = imagem_path
+            #contexto['mensagem_decifrada'] = mensagem_decifrada
+            #contexto['imagem_arvore'] = imagem_path
 
     return render(request, 'descriptografar.html', contexto)

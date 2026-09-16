@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Descriptografar mensagem{% endblock %}
+
+{% block content %}
+<div>
+    <div class="avatar-placeholder"></div>
+    <span>{{ request.user.email }}</span>
+</div>
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <textarea name="mensagem" placeholder="Escreva sua mensagem...">{{ mensagem|default:'' }}</textarea>
+
+    <input type="file" name="arquivo">
+
+    <button type="submit" name="acao" value="importar">Importar</button>
+    <button type="submit" name="acao" value="descriptografar">Descriptografar</button>
+</form>
+
+{% if mensagem_decifrada %}
+    <p>Mensagem descriptografada:</p>
+    <pre>{{ mensagem_decifrada }}</pre>
+
+    {% if imagem_arvore %}
+        <img src="{{ imagem_arvore }}" alt="Arvore binaria da criptografia">
+    {% endif %}
+{% endif %}
+{% endblock %}
