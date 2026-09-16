@@ -37,3 +37,7 @@ def salvar_arquivo(request):
     response = HttpResponse(mensagem_cifrada, content_type='text/plain')
     response['Content-Disposition'] = 'attachment; filename="mensagem_cifrada.txt"'
     return response
+
+#@login_required
+def descriptografar(request):
+    return render(request, 'descriptografar.html', {})
