@@ -6,7 +6,7 @@
 
 {% include 'partials/_sidebar.html' %}
 
-<form method="post" action="{% url 'criptografar' %}">
+<form method="post" action="{% url 'mensagens:criptografar' %}">
     {% csrf_token %}
     <input type="hidden" name="acao" value="criptografar">
 
