@@ -6,7 +6,7 @@
 
 {% include 'partials/_sidebar.html' %}
 
-<form method="post" action="{% url 'criptografar' %}">
+<form method="post" action="{% url 'mensagens:criptografar' %}">
     {% csrf_token %}
     <input type="hidden" name="acao" value="criptografar">
 
@@ -27,7 +27,7 @@
         <img src="{{ imagem_arvore }}" alt="Arvore binaria da criptografia">
     {% endif %}
 
-    <a href="{% url 'salvar_arquivo' %}"><button type="button">Salvar</button></a>
+    <a href="{% url 'mensagens:salvar_arquivo' %}"><button type="button">Salvar</button></a>
 {% else %}
     <button type="button" disabled>Salvar</button>
 {% endif %}

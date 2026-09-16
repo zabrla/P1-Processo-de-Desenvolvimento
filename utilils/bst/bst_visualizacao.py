@@ -21,7 +21,7 @@ matplotlib.use("Agg")  # backend sem tela -- TEM que vir antes do import do pypl
 
 import matplotlib.pyplot as plt
 
-from bst_core import PERCURSOS, BalancedBST, cifrar, decifrar
+from .bst_core import PERCURSOS, BalancedBST, cifrar, decifrar
 
 
 # ======================================================================
