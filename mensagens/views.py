@@ -40,4 +40,30 @@ def salvar_arquivo(request):
 
 #@login_required
 def descriptografar(request):
-    return render(request, 'descriptografar.html', {})
+    contexto = {}
+    mensagem = ''
+
+    if request.method == 'POST':
+        acao = request.POST.get('acao')
+
+        if acao == 'importar':
+            arquivo = request.FILES.get('arquivo')
+            if arquivo:
+                mensagem = arquivo.read().decode('utf-8')
+            contexto['mensagem'] = mensagem
+
+        elif acao == 'descriptografar':
+            mensagem = request.POST.get('mensagem')
+
+            # TODO: chamar a função real do bst_core.py aqui
+            # mensagem_decifrada, arvore = descriptografar_mensagem(mensagem)
+            # imagem_path = gerar_imagem_arvore(arvore)
+
+            mensagem_decifrada = f"[decifrado] {mensagem}"  # placeholder pra testar o template
+            imagem_path = None
+
+            contexto['mensagem'] = mensagem
+            contexto['mensagem_decifrada'] = mensagem_decifrada
+            contexto['imagem_arvore'] = imagem_path
+
+    return render(request, 'descriptografar.html', contexto)
