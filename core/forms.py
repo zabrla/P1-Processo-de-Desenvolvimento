@@ -1,6 +1,27 @@
 from django import forms
+from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
+
+class LoginForm(forms.Form):
+    email = forms.EmailField(label="E-mail")
+    senha = forms.CharField(label="Senha", widget=forms.PasswordInput)
+
+    def clean(self):
+        cleaned = super().clean()
+        email = cleaned.get("email", "").strip().lower()
+        senha = cleaned.get("senha")
+
+        if email and senha:
+            user_obj = User.objects.filter(email__iexact=email).first()
+            if user_obj:
+                user = authenticate(username=user_obj.username, password=senha)
+            else:
+                user = None
+            if user is None:
+                raise ValidationError("E-mail ou senha inválidos.")
+            cleaned["user"] = user
+        return cleaned
 
 class CadastroForm(forms.Form):
 

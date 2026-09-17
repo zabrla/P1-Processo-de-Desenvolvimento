@@ -1,8 +1,36 @@
-{% extends "core/base.html" %}
+{% extends 'base.html' %}
 
 {% block title %}Login{% endblock %}
 
 {% block content %}
-  <h2>Tela de Login (Em Construção)</h2>
-  <p>Cadastro realizado com sucesso! Em breve você poderá logar.</p>
+<div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
+  <div class="card shadow-sm border-0 p-4" style="max-width: 400px; width: 100%;">
+    <div class="card-body">
+      <h2 class="card-title text-center fw-bold mb-1">Entrar</h2>
+      <p class="text-center text-muted mb-4 fs-6">Bem-vindo de volta!</p>
+
+      <form method="POST">
+        {% csrf_token %}
+
+        {% if form.errors %}
+          <div class="alert alert-danger py-2 text-center small mb-3" role="alert">
+            E-mail ou senha inválidos.
+          </div>
+        {% endif %}
+
+        <div class="mb-3">
+          <label for="id_email" class="form-label visually-hidden">E-mail</label>
+          <input type="email" name="email" id="id_email" class="form-control" placeholder="E-mail" required>
+        </div>
+
+        <div class="mb-3">
+          <label for="id_senha" class="form-label visually-hidden">Senha</label>
+          <input type="password" name="senha" id="id_senha" class="form-control" placeholder="Senha" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mt-2">Acessar</button>
+      </form>
+    </div>
+  </div>
+</div>
 {% endblock %}

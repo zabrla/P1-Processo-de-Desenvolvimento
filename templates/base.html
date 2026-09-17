@@ -3,11 +3,14 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Djungle{% endblock %}</title>
+    
+    {% block extra_css %}{% endblock %}
 </head>
-<body>
+<body class="auth-page">
 
-    <main>
+    <main class="auth-shell">
         {% block content %}{% endblock %}
     </main>
 
