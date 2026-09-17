@@ -1,22 +1,23 @@
-{# templates/partials/_sidebar.html #}
-<aside>
-    <div>
-
-        <div class="avatar-placeholder"></div>
-        <p>{{ request.user.username }}</p>
-        
+<aside class="message-sidebar col-12 col-lg-auto d-flex flex-column align-items-center p-4" aria-label="Menu principal">
+    <div class="text-center w-100">
+        {% if workspace %}
+            {% include 'partials/_avatar.html' %}
+        {% else %}
+            <div class="avatar-placeholder"></div>
+        {% endif %}
+        <p class="message-username lh-sm fw-bold mb-4 text-break">{{ request.user.get_full_name|default:request.user.username|default:'Usuário' }}</p>
     </div>
 
-    <nav>
-        <a href="#">
+    <nav class="message-navigation d-flex flex-column gap-3 w-100" aria-label="Navegação">
+        {% if not workspace %}
             {% if request.resolver_match.url_name == 'descriptografar' %}
-                Criptografar
+                <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'mensagens:criptografar' %}">Criptografar</a>
             {% else %}
-                Descriptografar
+                <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'mensagens:descriptografar' %}">Descriptografar</a>
             {% endif %}
-        </a>
-        <a href="#">Historico</a>
-        <a href="#">Logs</a>
-        <a href="{% url 'core:logout' %}">Sair</a>
+        {% endif %}
+        <button class="btn btn-success fw-bold d-flex align-items-center justify-content-center" type="button" disabled title="Histórico ainda não disponível">Histórico</button>
+        <button class="btn btn-success fw-bold d-flex align-items-center justify-content-center" type="button" disabled title="Logs ainda não disponíveis">Logs</button>
+        <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'core:logout' %}">Sair</a>
     </nav>
 </aside>

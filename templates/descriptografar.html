@@ -1,34 +1,69 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Descriptografar mensagem{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/messages.css' %}">
+{% endblock %}
+
 {% block content %}
-<div>
-    <div class="avatar-placeholder"></div>
-    <span>{{ request.user.email }}</span>
+<div class="message-workspace container-fluid p-0">
+    <div class="row g-0 min-vh-100">
+        {% include 'partials/_sidebar.html' with workspace=True %}
+
+        <section class="message-main col-12 col-lg d-flex flex-column position-relative" aria-labelledby="page-title">
+            <header class="message-header d-flex align-items-center px-3">
+                <div class="message-account lh-sm d-flex align-items-center position-relative fw-bold">
+                    {% include 'partials/_avatar.html' with compact=True %}
+                    <span class="message-account-email text-truncate ps-2" title="{{ request.user.email }}">{{ request.user.email|default:'Usuário' }}</span>
+                </div>
+            </header>
+
+            <div class="message-content flex-grow-1 p-3 p-md-4">
+                <h1 id="page-title" class="visually-hidden">Descriptografar mensagem</h1>
+
+                <form method="post" action="{% url 'mensagens:descriptografar' %}" enctype="multipart/form-data" id="decrypt-form">
+                    {% csrf_token %}
+                    <label for="mensagem" class="visually-hidden">Mensagem criptografada</label>
+                    <textarea class="message-editor form-control border-0" id="mensagem" name="mensagem" placeholder="Escreva sua mensagem...">{{ mensagem|default:'' }}</textarea>
+
+                    <div class="mt-3" id="file-field">
+                        <label class="form-label" for="arquivo">Arquivo de mensagem</label>
+                        <input class="form-control" type="file" name="arquivo" id="arquivo">
+                    </div>
+
+                    <div class="message-actions row justify-content-center g-3">
+                        <div class="col-12 col-sm-auto d-grid">
+                            <button class="btn btn-success fw-bold" type="submit" name="acao" value="importar" id="import-button">Importar</button>
+                        </div>
+                        <div class="col-12 col-sm-auto d-grid">
+                            <button class="btn btn-success fw-bold" type="submit" name="acao" value="descriptografar">Descriptografar</button>
+                        </div>
+                    </div>
+                </form>
+
+                {% if erro %}
+                    <div class="alert alert-danger mt-4" role="alert">{{ erro }}</div>
+                {% endif %}
+
+                {% if mensagem_decifrada %}
+                    <section class="message-result card border-0 mt-4" aria-labelledby="result-title">
+                        <div class="card-body">
+                            <h2 class="h4" id="result-title">Mensagem descriptografada:</h2>
+                            <pre class="message-result-text mb-0">{{ mensagem_decifrada }}</pre>
+                            {% if imagem_arvore %}
+                                <img class="img-fluid d-block mx-auto mt-3" src="{{ imagem_arvore }}" alt="Árvore binária da descriptografia">
+                            {% endif %}
+                        </div>
+                    </section>
+                {% endif %}
+            </div>
+        </section>
+    </div>
 </div>
+{% endblock %}
 
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    <textarea name="mensagem" placeholder="Escreva sua mensagem...">{{ mensagem|default:'' }}</textarea>
-
-    <input type="file" name="arquivo">
-
-    <button type="submit" name="acao" value="importar">Importar</button>
-    <button type="submit" name="acao" value="descriptografar">Descriptografar</button>
-</form>
-
-{% if erro %}
-    <p style="color: red;">{{ erro }}</p>
-{% endif %}
-
-{% if mensagem_decifrada %}
-    <p>Mensagem descriptografada:</p>
-    <pre>{{ mensagem_decifrada }}</pre>
-
-    {% if imagem_arvore %}
-        <img src="{{ imagem_arvore }}" alt="Arvore binaria da criptografia">
-    {% endif %}
-{% endif %}
+{% block extra_js %}
+<script src="{% static 'core/js/message-import.js' %}" defer></script>
 {% endblock %}

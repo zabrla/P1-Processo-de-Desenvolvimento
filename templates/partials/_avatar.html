@@ -1,0 +1,10 @@
+{% load static %}
+<span class="message-avatar {% if compact %}message-avatar--compact{% else %}mx-auto{% endif %} position-relative d-block flex-shrink-0" aria-hidden="true">
+    {% if compact %}
+        <img class="d-block w-100 h-100" src="{% static 'core/images/figma-avatar-small.png' %}" width="50" height="50" alt="">
+        <img class="message-avatar-ring position-absolute" src="{% static 'core/images/figma-avatar-ring-small.svg' %}" width="44" height="44" alt="">
+    {% else %}
+        <img class="d-block w-100 h-100" src="{% static 'core/images/figma-avatar.png' %}" width="195" height="195" alt="">
+        <img class="message-avatar-ring position-absolute" src="{% static 'core/images/figma-avatar-ring.svg' %}" width="159" height="159" alt="">
+    {% endif %}
+</span>

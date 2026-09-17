@@ -1,0 +1,193 @@
+@font-face {
+    font-family: "Afacad Flux";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../fonts/afacad-flux-regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "Afacad Flux";
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url("../fonts/afacad-flux-bold.ttf") format("truetype");
+}
+
+/* Colors and dimensions from Figma frame 76:163 (1920 × 1080).
+   Responsive utilities use Bootstrap's unmodified breakpoints. */
+.message-workspace {
+    --message-background: #f1f2eb;
+    --message-surface: #d8dad3;
+    --message-ink: #4a4a48;
+    --message-accent: #566246;
+    --message-radius: 0.9375rem;
+    --message-control-font: clamp(1.25rem, 2.083333vw, 2.5rem);
+    color: var(--message-ink);
+    background: var(--message-background);
+    font-family: "Afacad Flux", sans-serif;
+}
+
+.message-workspace .btn-success {
+    --bs-btn-bg: var(--message-accent);
+    --bs-btn-border-color: var(--message-accent);
+    --bs-btn-hover-bg: #465139;
+    --bs-btn-hover-border-color: #465139;
+    --bs-btn-active-bg: #39432e;
+    --bs-btn-active-border-color: #39432e;
+    --bs-btn-disabled-bg: var(--message-accent);
+    --bs-btn-disabled-border-color: var(--message-accent);
+    --bs-btn-disabled-opacity: 1;
+    --bs-btn-focus-shadow-rgb: 86, 98, 70;
+    --bs-btn-border-radius: var(--message-radius);
+    font-size: var(--message-control-font);
+    min-height: 3.5rem;
+}
+
+.message-workspace .message-sidebar,
+.message-header,
+.message-editor,
+.message-result {
+    background: var(--message-surface);
+}
+
+.message-avatar {
+    width: 7rem;
+    height: 7rem;
+}
+
+.message-avatar-ring {
+    width: 81.54%;
+    height: 81.54%;
+    left: 8.97%;
+    top: 9.49%;
+}
+
+.message-avatar--compact {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.message-avatar--compact .message-avatar-ring {
+    width: 89.03%;
+    height: 89.03%;
+    left: 5.24%;
+    top: 5.75%;
+}
+
+.message-username,
+.message-account {
+    font-size: var(--message-control-font);
+}
+
+.message-main,
+.message-account-email {
+    min-width: 0;
+}
+
+.message-header {
+    min-height: 3.5rem;
+    border-bottom-right-radius: var(--message-radius);
+}
+
+.message-account {
+    width: min(100%, 33.625rem);
+    padding-bottom: 0.25rem;
+    background: url("../images/figma-user-outline.svg") left bottom / 100% 100% no-repeat;
+}
+
+textarea.message-editor {
+    min-height: 20rem;
+    padding: 1.5rem;
+    border-radius: var(--message-radius);
+    color: var(--message-ink);
+    font-size: clamp(1.125rem, 1.5625vw, 1.875rem);
+    resize: vertical;
+}
+
+.message-editor::placeholder {
+    color: var(--message-ink);
+    opacity: 0.5;
+}
+
+.message-editor:focus {
+    color: var(--message-ink);
+    background: var(--message-surface);
+    box-shadow: 0 0 0 0.25rem rgb(86 98 70 / 25%);
+}
+
+.message-actions {
+    margin-top: 1.5rem;
+}
+
+.message-result-text {
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+@media (min-width: 576px) {
+    .message-actions .btn {
+        width: clamp(12rem, 15.78125vw, 18.9375rem);
+    }
+}
+
+@media (min-width: 992px) {
+    .message-workspace .message-sidebar {
+        width: 19.739583%;
+        padding: clamp(1.5rem, 2.447917vw, 2.9375rem) 1.5rem !important;
+        border-bottom-right-radius: var(--message-radius);
+    }
+
+    .message-sidebar .message-avatar {
+        width: clamp(7rem, 10.15625vw, 12.1875rem);
+        height: clamp(7rem, 10.15625vw, 12.1875rem);
+    }
+
+    .message-navigation {
+        max-width: 18.9375rem;
+        gap: clamp(1rem, 1.041667vw, 1.25rem) !important;
+    }
+
+    .message-workspace .btn-success {
+        min-height: clamp(3.5rem, 4.6875vw, 5.625rem);
+    }
+
+    .message-header {
+        height: clamp(3.5rem, 3.697917vw, 4.4375rem);
+        padding-left: clamp(1rem, 1.09375vw, 1.3125rem) !important;
+    }
+
+    .message-header::after {
+        content: "";
+        position: absolute;
+        top: clamp(2.6875rem, 3.020833vw, 3.625rem);
+        left: -0.75rem;
+        width: 4.375rem;
+        height: 5.5rem;
+        background: url("../images/figma-corner.svg") center / 100% 100% no-repeat;
+        pointer-events: none;
+    }
+
+    .message-avatar--compact {
+        width: clamp(2.5rem, 2.590729vw, 3.108875rem);
+        height: clamp(2.5rem, 2.590729vw, 3.108875rem);
+    }
+
+    .message-account {
+        width: clamp(22rem, 28.020833vw, 33.625rem);
+    }
+
+    .message-content {
+        padding: clamp(1.5rem, 2.291667vw, 2.75rem) 3.375% 3rem 4.347826% !important;
+    }
+
+    textarea.message-editor {
+        min-height: 61.944444vh;
+        padding: 1rem clamp(1.5rem, 2.239583vw, 2.6875rem);
+    }
+
+    .message-actions {
+        --bs-gutter-x: clamp(1.5rem, 4.479167vw, 5.375rem);
+        margin-top: clamp(2rem, 3.90625vw, 4.6875rem);
+    }
+}
