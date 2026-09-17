@@ -8,6 +8,13 @@
     </div>
 
     <nav>
+        <a href="#">
+            {% if request.resolver_match.url_name == 'descriptografar' %}
+                Criptografar
+            {% else %}
+                Descriptografar
+            {% endif %}
+        </a>
         <a href="#">Historico</a>
         <a href="#">Logs</a>
         <a href="{% url 'core:logout' %}">Sair</a>
