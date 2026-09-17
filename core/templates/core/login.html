@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}Login{% endblock %}
+{% block title %} Login {% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}?v=6">
+{% endblock %}
 
 {% block content %}
 <div class="d-flex align-items-center justify-content-center min-vh-100 bg-light">
   <div class="card shadow-sm border-0 p-4" style="max-width: 400px; width: 100%;">
     <div class="card-body">
-      <h2 class="card-title text-center fw-bold mb-1">Entrar</h2>
+      <h2 class="card-title text-center fw-bold mb-1">LOGIN</h2>
       <p class="text-center text-muted mb-4 fs-6">Bem-vindo de volta!</p>
 
       <form method="POST">
@@ -18,12 +23,14 @@
           </div>
         {% endif %}
 
-        <div class="mb-3">
+        <div class="input-container mb-3 d-flex align-items-center">
+          <img src="{% static 'css/img/email.png' %}" alt="E-mail" class="icon me-2">
           <label for="id_email" class="form-label visually-hidden">E-mail</label>
           <input type="email" name="email" id="id_email" class="form-control" placeholder="E-mail" required>
         </div>
 
-        <div class="mb-3">
+        <div class="input-container mb-3 d-flex align-items-center">
+          <img src="{% static 'css/img/senha.png' %}" alt="Senha" class="icon me-2">
           <label for="id_senha" class="form-label visually-hidden">Senha</label>
           <input type="password" name="senha" id="id_senha" class="form-control" placeholder="Senha" required>
         </div>
