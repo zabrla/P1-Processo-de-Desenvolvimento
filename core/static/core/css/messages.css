@@ -141,6 +141,46 @@ textarea.message-editor {
     overflow-wrap: anywhere;
 }
 
+.message-workspace .btn[aria-current="page"] {
+    --bs-btn-bg: var(--message-background);
+    --bs-btn-color: var(--message-accent);
+}
+
+.history-back {
+    color: var(--message-ink);
+    font-size: var(--message-control-font);
+}
+
+.history-back:hover {
+    color: var(--message-accent);
+}
+
+.history-back img {
+    width: 1.8125rem;
+    height: 1.8125rem;
+}
+
+.history-conversation {
+    max-height: 80vh;
+    scrollbar-width: thin;
+    scrollbar-color: var(--message-ink) var(--message-surface);
+    scrollbar-gutter: stable;
+}
+
+.history-bubbles {
+    gap: 0.8125rem;
+    padding-right: 1rem;
+}
+
+.history-bubble {
+    width: 85%;
+    aspect-ratio: 728 / 212;
+}
+
+.history-bubble--sent {
+    aspect-ratio: 728 / 213;
+}
+
 @media (min-width: 576px) {
     .message-actions .btn {
         width: clamp(12rem, 15.78125vw, 18.9375rem);
@@ -148,6 +188,42 @@ textarea.message-editor {
 }
 
 @media (min-width: 992px) {
+    .message-history .message-main {
+        height: 100vh;
+    }
+
+    .message-history .message-header {
+        flex-shrink: 0;
+    }
+
+    .message-history .message-content {
+        min-height: 0;
+        padding: 2rem 1.875rem 2.9375rem 2.0625rem !important;
+    }
+
+    .message-history .history-conversation {
+        height: 100%;
+        max-height: none;
+    }
+
+    .message-history .history-back {
+        margin-left: 1.375rem;
+    }
+
+    .history-bubbles {
+        padding-right: 2rem;
+    }
+
+    .history-bubble {
+        width: 50.66%;
+        max-width: 45.5rem;
+    }
+
+    /* The next received bubble starts at the sent bubble's lower tip in Figma. */
+    .history-bubble--sent + .history-bubble {
+        margin-top: -0.8125rem;
+    }
+
     .message-workspace .message-sidebar {
         width: 19.739583%;
         padding: clamp(1.5rem, 2.447917vw, 2.9375rem) 1.5rem !important;

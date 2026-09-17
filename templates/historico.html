@@ -1,0 +1,24 @@
+{% extends 'messages_base.html' %}
+{% load static %}
+
+{% block title %}Histórico de mensagens{% endblock %}
+{% block page_heading %}Histórico de mensagens{% endblock %}
+{% block workspace_class %}message-history{% endblock %}
+
+{% block message_header %}
+<a class="history-back d-inline-flex align-items-center gap-2 fw-bold text-decoration-none" href="{% url 'mensagens:criptografar' %}">
+    <img src="{% static 'core/images/figma-back.png' %}" width="29" height="29" alt="">
+    <span>Voltar</span>
+</a>
+{% endblock %}
+
+{% block message_content %}
+<p id="history-description" class="visually-hidden">Prévia visual do histórico, sem mensagens armazenadas.</p>
+<div class="history-conversation position-relative z-1 overflow-y-scroll" role="region" aria-label="Histórico de mensagens" aria-describedby="history-description" tabindex="0">
+    <ul class="history-bubbles list-unstyled d-flex flex-column mb-0" aria-hidden="true">
+        {% for direction in 'rrsr' %}
+            {% include 'partials/_history_bubble.html' with direction=direction %}
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

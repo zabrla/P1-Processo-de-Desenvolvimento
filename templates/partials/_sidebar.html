@@ -16,7 +16,7 @@
                 <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'mensagens:descriptografar' %}">Descriptografar</a>
             {% endif %}
         {% endif %}
-        <button class="btn btn-success fw-bold d-flex align-items-center justify-content-center" type="button" disabled title="Histórico ainda não disponível">Histórico</button>
+        <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center{% if request.resolver_match.url_name == 'historico' %} border-5{% endif %}" href="{% url 'mensagens:historico' %}"{% if request.resolver_match.url_name == 'historico' %} aria-current="page"{% endif %}>Histórico</a>
         <button class="btn btn-success fw-bold d-flex align-items-center justify-content-center" type="button" disabled title="Logs ainda não disponíveis">Logs</button>
         <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'core:logout' %}">Sair</a>
     </nav>

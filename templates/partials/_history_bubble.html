@@ -1,0 +1,8 @@
+{% load static %}
+<li class="history-bubble {% if direction == 's' %}history-bubble--sent align-self-end{% else %}align-self-start{% endif %}">
+    {% if direction == 's' %}
+        <img class="d-block w-100 h-100" src="{% static 'core/images/figma-bubble-sent.svg' %}" width="728" height="213" alt="">
+    {% else %}
+        <img class="d-block w-100 h-100" src="{% static 'core/images/figma-bubble-received.svg' %}" width="728" height="212" alt="">
+    {% endif %}
+</li>
