@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from utilils.bst.bst_visualizacao import gerar_imagem_cripto, gerar_imagem_decripto
-
+from .models import LogAuditoria
 
 #@login_required
 def criptografar(request):
@@ -30,6 +30,12 @@ def criptografar(request):
 
         contexto['mensagem_cifrada'] = resultado['cifra']
         contexto['imagem_arvore'] = settings.MEDIA_URL + nome_imagem
+
+        LogAuditoria.objects.create(
+            usuario=request.user,
+            acao='CIFROU',
+            detalhes=f"Destinatário definido: {email_destinatario}"
+        )
 
     return render(request, 'criptografar.html', contexto)
 
@@ -73,7 +79,29 @@ def descriptografar(request):
                 resultado = gerar_imagem_decripto(request.user.email, mensagem, caminho_imagem)
                 contexto['mensagem_decifrada'] = resultado['texto']
                 contexto['imagem_arvore'] = settings.MEDIA_URL + nome_imagem
+
+                LogAuditoria.objects.create(
+                    usuario=request.user,
+                    acao='DECIFROU_SUCESSO',
+                    detalhes="Mensagem descriptografada com sucesso."
+                )
             except Exception:
                 contexto['erro'] = 'Não foi possível descriptografar essa mensagem com o seu e-mail.'
 
+            LogAuditoria.objects.create(
+                    usuario=request.user,
+                    acao='DECIFROU_NEGADO',
+                    detalhes="Falha na leitura: E-mail não autorizado ou mensagem inválida."
+                )
+
     return render(request, 'descriptografar.html', contexto)
+
+
+# @login_required
+def historico_logs(request):
+    if request.user.is_staff:
+        logs = LogAuditoria.objects.all().order_by('-criado_em')
+    else:
+        logs = LogAuditoria.objects.filter(usuario=request.user).order_by('-criado_em')
+
+    return render(request, 'logs.html', {'logs': logs})

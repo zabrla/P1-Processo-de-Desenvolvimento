@@ -8,15 +8,14 @@
     </div>
 
     <nav>
-        <a href="#">
-            {% if request.resolver_match.url_name == 'descriptografar' %}
-                Criptografar
-            {% else %}
-                Descriptografar
-            {% endif %}
-        </a>
+        
+        {% if request.resolver_match.url_name == 'descriptografar' %}
+            <a href="{% url 'mensagens:criptografar' %}">Criptografar</a>
+        {% else %}
+            <a href="{% url 'mensagens:descriptografar' %}">Descriptografar</a>
+        {% endif %}
         <a href="#">Historico</a>
-        <a href="#">Logs</a>
+        <a href="{% url 'mensagens:historico_logs' %}">Logs</a>
         <a href="{% url 'core:logout' %}">Sair</a>
     </nav>
 </aside>
