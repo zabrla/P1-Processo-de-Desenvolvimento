@@ -79,6 +79,12 @@ def descriptografar(request):
                 resultado = gerar_imagem_decripto(request.user.email, mensagem, caminho_imagem)
                 contexto['mensagem_decifrada'] = resultado['texto']
                 contexto['imagem_arvore'] = settings.MEDIA_URL + nome_imagem
+
+                LogAuditoria.objects.create(
+                    usuario=request.user,
+                    acao='DECIFROU_SUCESSO',
+                    detalhes="Mensagem descriptografada com sucesso."
+                )
             except Exception:
                 contexto['erro'] = 'Não foi possível descriptografar essa mensagem com o seu e-mail.'
 
