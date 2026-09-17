@@ -22,7 +22,7 @@ O sistema web fornece uma interface minimalista e intuitiva para troca de mensag
 
 O fluxo de entrada no sistema é dividido em duas telas principais, permitindo o acesso de usuários existentes ou a criação de novas contas.
 
-Fluxo de Login
+Fluxo de Login:
 
 1. O Usuário acessa a primeira tela da aplicação.
 
@@ -32,7 +32,7 @@ Fluxo de Login
 
 4. Caso não possua conta, o usuário pode clicar no link "Cadastre-se" para ser redirecionado.
 
-Fluxo de Cadastro
+Fluxo de Cadastro:
 
 1. O Usuário é apresentado ao formulário "SIGN UP".
 
