@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'core/css/messages.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="message-workspace container-fluid p-0">
+    <div class="row g-0 min-vh-100">
+        {% include 'partials/_sidebar.html' with workspace=True %}
+
+        <section class="message-main col-12 col-lg d-flex flex-column position-relative" aria-labelledby="page-title">
+            <header class="message-header d-flex align-items-center px-3">
+                <div class="message-account lh-sm d-flex align-items-center position-relative fw-bold">
+                    {% include 'partials/_avatar.html' with compact=True %}
+                    {% block message_account %}
+                        <span class="message-account-email text-truncate ps-2" title="{{ request.user.email }}">{{ request.user.email|default:'Usuário' }}</span>
+                    {% endblock %}
+                </div>
+            </header>
+
+            <div class="message-content flex-grow-1 p-3 p-md-4">
+                <h1 id="page-title" class="visually-hidden">{% block page_heading %}{% endblock %}</h1>
+                {% block message_content %}{% endblock %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

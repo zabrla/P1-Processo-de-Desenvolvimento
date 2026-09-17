@@ -14,7 +14,7 @@
     src: url("../fonts/afacad-flux-bold.ttf") format("truetype");
 }
 
-/* Colors and dimensions from Figma frame 76:163 (1920 × 1080).
+/* Colors and dimensions from Figma frames 76:163 and 4:36 (1920 × 1080).
    Responsive utilities use Bootstrap's unmodified breakpoints. */
 .message-workspace {
     --message-background: #f1f2eb;
@@ -94,6 +94,22 @@
     width: min(100%, 33.625rem);
     padding-bottom: 0.25rem;
     background: url("../images/figma-user-outline.svg") left bottom / 100% 100% no-repeat;
+}
+
+.message-account-input {
+    color: var(--message-ink);
+    font-size: inherit;
+    line-height: inherit;
+}
+
+.message-account-input::placeholder {
+    color: var(--message-ink);
+    opacity: 1;
+}
+
+.message-account-input:focus {
+    color: var(--message-ink);
+    box-shadow: 0 0 0 0.25rem rgb(86 98 70 / 25%);
 }
 
 textarea.message-editor {

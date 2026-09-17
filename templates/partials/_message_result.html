@@ -1,0 +1,11 @@
+{% if message %}
+    <section class="message-result card border-0 mt-4" aria-labelledby="result-title">
+        <div class="card-body">
+            <h2 class="h4" id="result-title">{{ heading }}</h2>
+            <pre class="message-result-text mb-0">{{ message }}</pre>
+            {% if imagem_arvore %}
+                <img class="img-fluid d-block mx-auto mt-3" src="{{ imagem_arvore }}" alt="{{ tree_alt }}">
+            {% endif %}
+        </div>
+    </section>
+{% endif %}

@@ -1,34 +1,32 @@
-{% extends 'base.html' %}
+{% extends 'messages_base.html' %}
 
 {% block title %}Criptografar mensagem{% endblock %}
+{% block page_heading %}Criptografar mensagem{% endblock %}
 
-{% block content %}
+{% block message_account %}
+<label for="email" class="visually-hidden">E-mail do destinatário</label>
+<input class="message-account-input message-account-email form-control border-0 rounded-0 bg-transparent fw-bold ps-2 py-0" type="email" id="email" name="email" form="encrypt-form" value="{{ request.POST.email|default:'' }}" placeholder="E-mail do destinatário" autocomplete="email" required>
+{% endblock %}
 
-{% include 'partials/_sidebar.html' %}
-
-<form method="post" action="{% url 'mensagens:criptografar' %}">
+{% block message_content %}
+<form method="post" action="{% url 'mensagens:criptografar' %}" id="encrypt-form">
     {% csrf_token %}
     <input type="hidden" name="acao" value="criptografar">
+    {% include 'partials/_message_editor.html' with label='Mensagem para criptografar' value=request.POST.mensagem %}
 
-    <label for="email">Email do destinatario</label>
-    <input type="email" id="email" name="email" value="{{ request.POST.email|default:'' }}" required>
-
-    <label for="mensagem">Mensagem</label>
-    <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem...">{{ request.POST.mensagem|default:'' }}</textarea>
-
-    <button type="submit">Criptografar</button>
+    <div class="message-actions row justify-content-center g-3">
+        <div class="col-12 col-sm-auto d-grid">
+            {% if mensagem_cifrada %}
+                <a class="btn btn-success fw-bold d-flex align-items-center justify-content-center" href="{% url 'mensagens:salvar_arquivo' %}">Salvar</a>
+            {% else %}
+                <button class="btn btn-success fw-bold" type="button" disabled>Salvar</button>
+            {% endif %}
+        </div>
+        <div class="col-12 col-sm-auto d-grid">
+            <button class="btn btn-success fw-bold" type="submit">Criptografar</button>
+        </div>
+    </div>
 </form>
 
-{% if mensagem_cifrada %}
-    <p>Mensagem criptografada:</p>
-    <pre>{{ mensagem_cifrada }}</pre>
-
-    {% if imagem_arvore %}
-        <img src="{{ imagem_arvore }}" alt="Arvore binaria da criptografia">
-    {% endif %}
-
-    <a href="{% url 'mensagens:salvar_arquivo' %}"><button type="button">Salvar</button></a>
-{% else %}
-    <button type="button" disabled>Salvar</button>
-{% endif %}
+{% include 'partials/_message_result.html' with message=mensagem_cifrada heading='Mensagem criptografada:' tree_alt='Árvore binária da criptografia' %}
 {% endblock %}
