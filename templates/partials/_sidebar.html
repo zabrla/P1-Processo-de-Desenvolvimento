@@ -8,13 +8,22 @@
     </div>
 
     <nav class="w-100 d-flex flex-column gap-3">
-        {% if request.resolver_match.url_name == 'descriptografar' %}
-            <a href="{% url 'mensagens:criptografar' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'criptografar' %}active{% endif %}">Criptografar</a>
-        {% else %}
-            <a href="{% url 'mensagens:descriptografar' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'descriptografar' %}active{% endif %}">Descriptografar</a>
+        {% if request.resolver_match.url_name != 'criptografar' %}
+            <a href="{% url 'mensagens:criptografar' %}" class="btn-menu text-decoration-none">Criptografar</a>
         {% endif %}
-        <a href="{% url 'mensagens:historico' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'historico' %}active{% endif %}">Historico</a>
-        <a href="{% url 'mensagens:historico_logs' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'historico_logs' %}active{% endif %}">Logs</a>
+            
+        {% if request.resolver_match.url_name != 'descriptografar' %}
+            <a href="{% url 'mensagens:descriptografar' %}" class="btn-menu text-decoration-none">Descriptografar</a>
+        {% endif %}
+
+        {% if request.resolver_match.url_name != 'historico' %}
+            <a href="{% url 'mensagens:historico' %}" class="btn-menu text-decoration-none">Historico</a>
+        {% endif %}
+
+        {% if request.resolver_match.url_name != 'historico_logs' %}
+            <a href="{% url 'mensagens:historico_logs' %}" class="btn-menu text-decoration-none">Logs</a>
+        {% endif %}
+
         <a href="{% url 'core:logout' %}" class="btn-menu text-decoration-none mt-4">Sair</a>
     </nav>
 </aside>

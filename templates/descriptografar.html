@@ -3,6 +3,9 @@
 {% block title %}Descriptografar mensagem{% endblock %}
 
 {% block content %}
+
+{% include 'partials/_sidebar.html' %}
+
 <div>
     <div class="avatar-placeholder"></div>
     <span>{{ request.user.email }}</span>

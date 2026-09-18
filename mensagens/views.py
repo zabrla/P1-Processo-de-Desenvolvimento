@@ -89,6 +89,12 @@ def descriptografar(request):
                 contexto['mensagem_decifrada'] = resultado['texto']
                 contexto['imagem_arvore'] = settings.MEDIA_URL + nome_imagem
 
+                Mensagem.objects.get_or_create(
+                    email_destinatario=request.user.email,
+                    conteudo_cifrado=mensagem,
+                    defaults={'remetente': None},
+                )
+
                 LogAuditoria.objects.create(
                     usuario=request.user,
                     acao='DECIFROU_SUCESSO',
