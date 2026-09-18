@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.db import models
 
 class LogAuditoria(models.Model):
     ACAO_CHOICES = [
@@ -15,3 +17,16 @@ class LogAuditoria(models.Model):
 
     def __str__(self):
         return f"{self.usuario.email} - {self.get_acao_display()} ({self.criado_em.strftime('%d/%m/%Y %H:%M')})"
+
+class Mensagem(models.Model):
+    remetente = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='mensagens_enviadas',
+    )
+    email_destinatario = models.EmailField()
+    conteudo_cifrado = models.TextField()
+    data_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.remetente} -> {self.email_destinatario} ({self.data_envio:%d/%m/%Y %H:%M})"
