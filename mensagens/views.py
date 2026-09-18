@@ -97,11 +97,11 @@ def descriptografar(request):
             except Exception:
                 contexto['erro'] = 'Não foi possível descriptografar essa mensagem com o seu e-mail.'
 
-            LogAuditoria.objects.create(
-                    usuario=request.user,
-                    acao='DECIFROU_NEGADO',
-                    detalhes="Falha na leitura: E-mail não autorizado ou mensagem inválida."
-                )
+                LogAuditoria.objects.create(
+                        usuario=request.user,
+                        acao='DECIFROU_NEGADO',
+                        detalhes="Falha na leitura: E-mail não autorizado ou mensagem inválida."
+                    )
 
     return render(request, 'descriptografar.html', contexto)
 
