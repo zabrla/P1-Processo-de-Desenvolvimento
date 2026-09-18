@@ -8,4 +8,6 @@ urlpatterns = [
     path('criptografar/salvar/', views.salvar_arquivo, name='salvar_arquivo'),
     path('descriptografar/', views.descriptografar, name='descriptografar'),
     path('logs/', views.historico_logs, name='historico_logs'),
+    path('historico/', views.historico, name='historico'),
+    path('historico/<int:mensagem_id>/baixar/', views.baixar_mensagem, name='baixar_mensagem'),
 ]
