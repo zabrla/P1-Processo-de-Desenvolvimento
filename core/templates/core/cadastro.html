@@ -1,6 +1,11 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}Cadastro | Mensageria Segura{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/cadastro.css' %}?v=2">
+{% endblock %}
 
 {% block content %}
 <section class="auth-card">
@@ -18,7 +23,7 @@
 
     <div class="field">
       <span class="field__icon" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 20.5c1.6-3.6 4.8-5.5 8-5.5s6.4 1.9 8 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <img src="{% static 'css/img/pessoa.png' %}" alt="Nome" class="icon-img">
       </span>
       <input type="text" name="nome" id="id_nome" placeholder="Nome completo"
              value="{{ form.nome.value|default:'' }}" required autocomplete="name">
@@ -27,7 +32,7 @@
 
     <div class="field">
       <span class="field__icon" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <img src="{% static 'css/img/email.png' %}" alt="E-mail" class="icon-img">
       </span>
       <input type="email" name="email" id="id_email" placeholder="E-mail"
              value="{{ form.email.value|default:'' }}" required autocomplete="email">
@@ -36,7 +41,7 @@
 
     <div class="field">
       <span class="field__icon" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+        <img src="{% static 'css/img/senha.png' %}" alt="Senha" class="icon-img">
       </span>
       <input type="password" name="senha" id="id_senha" placeholder="Senha (mínimo 8 caracteres)" required autocomplete="new-password">
     </div>
@@ -44,7 +49,7 @@
 
     <div class="field">
       <span class="field__icon" aria-hidden="true">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+        <img src="{% static 'css/img/senham.png' %}" alt="Confirmar Senha" class="icon-img">
       </span>
       <input type="password" name="confirmar_senha" id="id_confirmar_senha" placeholder="Confirmar senha" required autocomplete="new-password">
     </div>
