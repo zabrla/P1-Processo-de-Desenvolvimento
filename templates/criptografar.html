@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Criptografar mensagem{% endblock %}
 
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/logs.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'css/criptografar.css' %}">
+{% endblock %}
+
 {% block content %}
+<div class="criptografar-page d-flex min-vh-100 bg-page">
 
 {% include 'partials/_sidebar.html' %}
 
-<form method="post" action="{% url 'mensagens:criptografar' %}">
+<div class="criptografar-content flex-grow-1 p-4 p-md-5 bg-card">
+<form class="criptografar-form" method="post" action="{% url 'mensagens:criptografar' %}">
     {% csrf_token %}
     <input type="hidden" name="acao" value="criptografar">
 
@@ -16,7 +24,7 @@
     <label for="mensagem">Mensagem</label>
     <textarea id="mensagem" name="mensagem" placeholder="Escreva sua mensagem...">{{ request.POST.mensagem|default:'' }}</textarea>
 
-    <button type="submit">Criptografar</button>
+    <button class="btn-menu" type="submit">Criptografar</button>
 </form>
 
 {% if mensagem_cifrada %}
@@ -27,8 +35,10 @@
         <img src="{{ imagem_arvore }}" alt="Arvore binaria da criptografia">
     {% endif %}
 
-    <a href="{% url 'mensagens:salvar_arquivo' %}"><button type="button">Salvar</button></a>
+    <a class="criptografar-save text-decoration-none" href="{% url 'mensagens:salvar_arquivo' %}"><button class="btn-menu" type="button">Salvar</button></a>
 {% else %}
-    <button type="button" disabled>Salvar</button>
+    <button class="btn-menu" type="button" disabled>Salvar</button>
 {% endif %}
+</div>
+</div>
 {% endblock %}
