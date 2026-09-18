@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@400;700&display=swap');
+
+.encrypt-page {
+    --page: #f1f2eb;
+    --panel: #d8dad3;
+    --ink: #4a4a48;
+    --accent: #566246;
+    background: var(--page);
+    color: var(--ink);
+    font-family: "Afacad Flux", sans-serif;
+    font-size: clamp(20px, 2.08333vw, 40px);
+}
+
+.encrypt-page > aside {
+    flex: 0 0 19.74%;
+    min-width: 200px;
+    padding: clamp(24px, 2.45vw, 47px) clamp(20px, 1.98vw, 38px);
+    background: var(--panel);
+    border-radius: 0 0 15px 0;
+    text-align: center;
+    font-weight: 700;
+}
+
+.encrypt-page .avatar-placeholder {
+    width: clamp(100px, 10.16vw, 195px);
+    height: clamp(100px, 10.16vw, 195px);
+    margin: 0 auto;
+    background: url('../img/criptografar/circulo.svg') center / 81.5% 81.5% no-repeat,
+        url('../img/criptografar/usuario.png') center / 100% 100% no-repeat;
+}
+
+.encrypt-page aside p {
+    line-height: 1.2;
+    margin: 0 0 clamp(22px, 2.1vw, 40px);
+    overflow-wrap: anywhere;
+}
+
+.encrypt-page aside nav {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(12px, 1.04vw, 20px);
+}
+
+.encrypt-page aside nav a,
+.encrypt-page .encrypt-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: clamp(48px, 4.69vw, 90px);
+    border: 0;
+    border-radius: 15px;
+    padding: 8px 12px;
+    background: var(--accent);
+    color: #fff;
+    font-size: inherit;
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.encrypt-page aside nav a:hover,
+.encrypt-page .encrypt-button:hover { background: #455038; }
+.encrypt-page a:focus-visible,
+.encrypt-page button:focus-visible {
+    outline: 3px solid var(--ink);
+    outline-offset: 4px;
+}
+.encrypt-page .encrypt-button:disabled { opacity: .65; }
+.encrypt-workspace { min-width: 0; }
+
+.encrypt-page .recipient-bar {
+    min-height: clamp(48px, 3.7vw, 71px);
+    padding: 4px clamp(12px, 1.1vw, 21px);
+    background: var(--panel);
+    border-radius: 0 0 15px 0;
+}
+
+.encrypt-page .recipient-field {
+    width: clamp(280px, 28.02vw, 538px);
+    max-width: 100%;
+    border-bottom: 2px solid var(--accent);
+}
+
+.encrypt-page .recipient-field .avatar-placeholder {
+    width: clamp(30px, 2.59vw, 50px);
+    height: clamp(30px, 2.59vw, 50px);
+    margin: 0;
+}
+
+.encrypt-page .recipient-field input {
+    min-width: 0;
+    padding: 0 6px;
+    border: 0;
+    border-left: 2px solid var(--accent);
+    border-radius: 0;
+    background: transparent;
+    color: var(--ink);
+    font-size: inherit;
+    font-weight: 700;
+}
+
+.encrypt-page .message-editor {
+    padding: clamp(24px, 2.29vw, 44px) clamp(24px, 2.55vw, 49px) 40px clamp(24px, 3.6vw, 69px);
+}
+
+.encrypt-page textarea {
+    min-height: 360px;
+    height: 61.94vh;
+    padding: clamp(18px, 1.3vw, 25px) clamp(20px, 2.24vw, 43px);
+    border: 0;
+    border-radius: 15px;
+    background: var(--panel);
+    color: var(--ink);
+    font-size: clamp(18px, 1.5625vw, 30px);
+    resize: vertical;
+}
+
+.encrypt-page textarea::placeholder { color: var(--ink); opacity: .5; }
+.encrypt-page .form-control:focus {
+    background: var(--panel);
+    color: var(--ink);
+    box-shadow: 0 0 0 3px #56624655;
+}
+.encrypt-page .message-actions {
+    gap: clamp(20px, 4.48vw, 86px);
+    margin-top: clamp(32px, 8.43vh, 91px);
+}
+.encrypt-page .encrypt-button { width: clamp(160px, 15.78vw, 303px); }
+.encrypt-page .encryption-result {
+    margin: 0 clamp(24px, 3.6vw, 69px) 40px;
+    padding: 24px;
+    border-radius: 15px;
+    background: var(--panel);
+    font-size: 18px;
+}
+.encrypt-page .encryption-result pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+@media (max-width: 767.98px) {
+    .encrypt-page { flex-direction: column; }
+    .encrypt-page > aside { min-width: 0; padding: 16px; border-radius: 0; }
+    .encrypt-page aside > div { display: flex; align-items: center; justify-content: center; gap: 12px; }
+    .encrypt-page aside .avatar-placeholder { width: 64px; height: 64px; margin: 0; flex-shrink: 0; }
+    .encrypt-page aside p { margin: 0; }
+    .encrypt-page aside nav { flex-direction: row; flex-wrap: wrap; margin-top: 16px; gap: 8px; }
+    .encrypt-page aside nav a { flex: 1 1 140px; }
+    .encrypt-page .recipient-field { width: 100%; }
+    .encrypt-page textarea { height: 45vh; min-height: 260px; }
+    .encrypt-page .message-actions { gap: 12px; }
+    .encrypt-page .encrypt-button { flex: 1 1 160px; }
+}
