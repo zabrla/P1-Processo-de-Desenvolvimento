@@ -1,21 +1,20 @@
-{# templates/partials/_sidebar.html #}
-<aside>
-    <div>
-
-        <div class="avatar-placeholder"></div>
-        <p>{{ request.user.username }}</p>
-        
+{% load static %}
+<aside class="sidebar d-flex flex-column align-items-center py-5 px-3">
+    <div class="text-center mb-4">
+        <div class="bg-transparent rounded-circle mb-2 mx-auto d-flex justify-content-center align-items-center overflow-hidden" style="width: 70px; height: 70px;">
+            <img src="{% static 'css/img/icon.png' %}" alt="Perfil" class="w-100 h-100 object-fit-cover">
+        </div>
+        <p class="fw-bold fs-5 text-dark m-0">{{ request.user.username }}</p>
     </div>
 
-    <nav>
-        
+    <nav class="w-100 d-flex flex-column gap-3">
         {% if request.resolver_match.url_name == 'descriptografar' %}
-            <a href="{% url 'mensagens:criptografar' %}">Criptografar</a>
+            <a href="{% url 'mensagens:criptografar' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'criptografar' %}active{% endif %}">Criptografar</a>
         {% else %}
-            <a href="{% url 'mensagens:descriptografar' %}">Descriptografar</a>
+            <a href="{% url 'mensagens:descriptografar' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'descriptografar' %}active{% endif %}">Descriptografar</a>
         {% endif %}
-        <a href="{% url 'mensagens:historico' %}">Historico</a>
-        <a href="{% url 'mensagens:historico_logs' %}">Logs</a>
-        <a href="{% url 'core:logout' %}">Sair</a>
+        <a href="{% url 'mensagens:historico' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'historico' %}active{% endif %}">Historico</a>
+        <a href="{% url 'mensagens:historico_logs' %}" class="btn-menu text-decoration-none {% if request.resolver_match.url_name == 'historico_logs' %}active{% endif %}">Logs</a>
+        <a href="{% url 'core:logout' %}" class="btn-menu text-decoration-none mt-4">Sair</a>
     </nav>
 </aside>
