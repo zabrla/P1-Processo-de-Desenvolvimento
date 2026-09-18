@@ -7,7 +7,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 
 from utilils.bst.bst_visualizacao import gerar_imagem_cripto, gerar_imagem_decripto
-from .models import LogAuditoria
+from .models import LogAuditoria, Mensagem
 
 #@login_required
 def criptografar(request):
@@ -24,6 +24,12 @@ def criptografar(request):
         # a chave usada pra cifrar e o email do destinatario -- so quem
         # logar com esse mesmo email consegue decifrar (ver view abaixo)
         resultado = gerar_imagem_cripto(email_destinatario, mensagem, caminho_imagem)
+
+        Mensagem.objects.create(
+            remetente=request.user,
+            email_destinatario=email_destinatario,
+            conteudo_cifrado=resultado['cifra'],
+        )
 
         request.session['mensagem_cifrada'] = resultado['cifra']
         request.session['email_destinatario'] = email_destinatario
