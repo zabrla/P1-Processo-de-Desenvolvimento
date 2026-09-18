@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastro | Mensageria Segura{% endblock %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/cadastro.css' %}?v=2">
+{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+  <header class="auth-card__header">
+    <h1>Sign Up</h1>
+    <p>Cadastre-se agora</p>
+  </header>
+
+  <form method="post" class="auth-form" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <p class="field-error">{{ form.non_field_errors.0 }}</p>
+    {% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'css/img/pessoa.png' %}" alt="Nome" class="icon-img">
+      </span>
+      <input type="text" name="nome" id="id_nome" placeholder="Nome completo"
+             value="{{ form.nome.value|default:'' }}" required autocomplete="name">
+    </div>
+    {% if form.nome.errors %}<p class="field-error">{{ form.nome.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'css/img/email.png' %}" alt="E-mail" class="icon-img">
+      </span>
+      <input type="email" name="email" id="id_email" placeholder="E-mail"
+             value="{{ form.email.value|default:'' }}" required autocomplete="email">
+    </div>
+    {% if form.email.errors %}<p class="field-error">{{ form.email.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'css/img/senha.png' %}" alt="Senha" class="icon-img">
+      </span>
+      <input type="password" name="senha" id="id_senha" placeholder="Senha (mínimo 8 caracteres)" required autocomplete="new-password">
+    </div>
+    {% if form.senha.errors %}<p class="field-error">{{ form.senha.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <img src="{% static 'css/img/senham.png' %}" alt="Confirmar Senha" class="icon-img">
+      </span>
+      <input type="password" name="confirmar_senha" id="id_confirmar_senha" placeholder="Confirmar senha" required autocomplete="new-password">
+    </div>
+    {% if form.confirmar_senha.errors %}<p class="field-error">{{ form.confirmar_senha.errors.0 }}</p>{% endif %}
+
+    <button type="submit" class="btn btn--primary btn--block">Acessar</button>
+  </form>
+
+  <p class="auth-card__footer">Já tem conta? <a href="{% url 'core:login' %}">Entrar</a></p>
+</section>
+{% endblock %}

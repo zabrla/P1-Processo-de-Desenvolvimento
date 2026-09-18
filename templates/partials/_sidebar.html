@@ -14,7 +14,7 @@
         {% else %}
             <a href="{% url 'mensagens:descriptografar' %}">Descriptografar</a>
         {% endif %}
-        <a href="#">Historico</a>
+        <a href="{% url 'mensagens:historico' %}">Historico</a>
         <a href="{% url 'mensagens:historico_logs' %}">Logs</a>
         <a href="{% url 'core:logout' %}">Sair</a>
     </nav>
