@@ -1,0 +1,65 @@
+.historico-content {
+    min-width: 0;
+    color: #4A4A48;
+    font-size: 18px;
+}
+
+.historico-content h2 {
+    margin: 0 0 1rem;
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.historico-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 0;
+    list-style: none;
+}
+
+.historico-list,
+.historico-content > p {
+    max-width: 650px;
+    margin: 0 0 2rem;
+}
+
+.historico-list li,
+.historico-content > p {
+    padding: 1rem;
+    border-radius: 15px 15px 15px 0;
+    background-color: #9BB098;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.historico-list li {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+}
+
+.historico-list li > span {
+    flex: 1 1 240px;
+    min-width: 0;
+}
+
+.historico-content a:focus-visible {
+    outline: 3px solid #566246;
+    outline-offset: 3px;
+}
+
+@media (max-width: 575.98px) {
+    .historico-page {
+        flex-direction: column;
+    }
+
+    .historico-page > .sidebar {
+        width: 100%;
+    }
+
+    .historico-content {
+        border-radius: 20px 20px 0 0;
+    }
+}
