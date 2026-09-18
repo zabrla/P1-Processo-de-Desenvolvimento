@@ -84,8 +84,15 @@ def descriptografar(request):
             caminho_imagem = os.path.join(settings.MEDIA_ROOT, nome_imagem)
 
             try:
-                # a chave pra decifrar e o email de quem esta logado
                 resultado = gerar_imagem_decripto(request.user.email, mensagem, caminho_imagem)
+            except Exception:
+                contexto['erro'] = 'Não foi possível descriptografar essa mensagem com o seu e-mail.'
+                LogAuditoria.objects.create(
+                    usuario=request.user,
+                    acao='DECIFROU_NEGADO',
+                    detalhes="Falha na leitura: E-mail não autorizado ou mensagem inválida."
+                )
+            else:
                 contexto['mensagem_decifrada'] = resultado['texto']
                 contexto['imagem_arvore'] = settings.MEDIA_URL + nome_imagem
 
@@ -100,14 +107,6 @@ def descriptografar(request):
                     acao='DECIFROU_SUCESSO',
                     detalhes="Mensagem descriptografada com sucesso."
                 )
-            except Exception:
-                contexto['erro'] = 'Não foi possível descriptografar essa mensagem com o seu e-mail.'
-
-                LogAuditoria.objects.create(
-                        usuario=request.user,
-                        acao='DECIFROU_NEGADO',
-                        detalhes="Falha na leitura: E-mail não autorizado ou mensagem inválida."
-                    )
 
     return render(request, 'descriptografar.html', contexto)
 

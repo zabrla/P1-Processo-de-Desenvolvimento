@@ -23,6 +23,8 @@ class Mensagem(models.Model):
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='mensagens_enviadas',
+        null=True,
+        blank=True,
     )
     email_destinatario = models.EmailField()
     conteudo_cifrado = models.TextField()
