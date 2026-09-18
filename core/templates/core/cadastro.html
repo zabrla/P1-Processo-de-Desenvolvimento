@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}Cadastro | Mensageria Segura{% endblock %}
+
+{% block content %}
+<section class="auth-card">
+  <header class="auth-card__header">
+    <h1>Sign Up</h1>
+    <p>Cadastre-se agora</p>
+  </header>
+
+  <form method="post" class="auth-form" novalidate>
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+      <p class="field-error">{{ form.non_field_errors.0 }}</p>
+    {% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Z" stroke="currentColor" stroke-width="1.6"/><path d="M4 20.5c1.6-3.6 4.8-5.5 8-5.5s6.4 1.9 8 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+      </span>
+      <input type="text" name="nome" id="id_nome" placeholder="Nome completo"
+             value="{{ form.nome.value|default:'' }}" required autocomplete="name">
+    </div>
+    {% if form.nome.errors %}<p class="field-error">{{ form.nome.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="m4 7 8 6 8-6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      <input type="email" name="email" id="id_email" placeholder="E-mail"
+             value="{{ form.email.value|default:'' }}" required autocomplete="email">
+    </div>
+    {% if form.email.errors %}<p class="field-error">{{ form.email.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+      </span>
+      <input type="password" name="senha" id="id_senha" placeholder="Senha (mínimo 8 caracteres)" required autocomplete="new-password">
+    </div>
+    {% if form.senha.errors %}<p class="field-error">{{ form.senha.errors.0 }}</p>{% endif %}
+
+    <div class="field">
+      <span class="field__icon" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V8a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.6"/></svg>
+      </span>
+      <input type="password" name="confirmar_senha" id="id_confirmar_senha" placeholder="Confirmar senha" required autocomplete="new-password">
+    </div>
+    {% if form.confirmar_senha.errors %}<p class="field-error">{{ form.confirmar_senha.errors.0 }}</p>{% endif %}
+
+    <button type="submit" class="btn btn--primary btn--block">Acessar</button>
+  </form>
+
+  <p class="auth-card__footer">Já tem conta? <a href="{% url 'core:login' %}">Entrar</a></p>
+</section>
+{% endblock %}
