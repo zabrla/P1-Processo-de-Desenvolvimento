@@ -1,32 +1,41 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/logs.css' %}?v=6">
+{% endblock %}
 
 {% block content %}
+<div class="d-flex min-vh-100 bg-page">
+  {% include 'partials/_sidebar.html' %}
 
-{% include 'partials/_sidebar.html' %}
-
-<h2>Histórico de Auditoria</h2>
-<table>
-  <thead>
-    <tr>
-      <th>Data/Hora</th>
-      <th>Usuário</th>
-      <th>Ação</th>
-      <th>Detalhes</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for log in logs %}
-    <tr>
-      <td>{{ log.criado_em|date:"d/m/Y H:i:s" }}</td>
-      <td>{{ log.usuario.email }}</td>
-      <td>{{ log.get_acao_display }}</td>
-      <td>{{ log.detalhes }}</td>
-    </tr>
-    {% empty %}
-    <tr>
-      <td colspan="4">Nenhum registro encontrado.</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+  <main class="flex-grow-1 p-4 p-md-5 bg-card">
+    <h2 class="d-none">Histórico de Auditoria</h2>
+    
+    <table class="table-logs">
+      <thead class="d-none">
+        <tr>
+          <th>Data/Hora</th>
+          <th>Usuário</th>
+          <th>Ação</th>
+          <th>Detalhes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in logs %}
+        <tr>
+          <td>{{ log.criado_em|date:"d/m/Y H:i:s" }}</td>
+          <td>- {{ log.usuario.email }}</td>
+          <td>| {{ log.get_acao_display }}</td>
+          <td>| {{ log.detalhes }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="4">Nenhum registro encontrado.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </main>
+</div>
 {% endblock %}
