@@ -1,0 +1,84 @@
+.descriptografar-page {
+    color: #4A4A48;
+    font-size: 18px;
+}
+
+.descriptografar-profile {
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.descriptografar-content {
+    min-width: 0;
+}
+
+.descriptografar-form,
+.descriptografar-content > p,
+.descriptografar-content > pre {
+    max-width: 650px;
+}
+
+.descriptografar-form textarea,
+.descriptografar-form input[type="file"] {
+    width: 100%;
+    min-width: 0;
+    padding: 0.875rem 1rem;
+    border: 1px solid #566246;
+    border-radius: 15px 15px 15px 0;
+    background-color: #F1F2EB;
+    color: inherit;
+    font: inherit;
+}
+
+.descriptografar-form textarea {
+    min-height: 220px;
+    resize: vertical;
+}
+
+.descriptografar-form textarea::placeholder {
+    color: #62685C;
+}
+
+.descriptografar-form input[type="file"]::file-selector-button {
+    margin-right: 1rem;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #566246;
+    border-radius: 12px;
+    background-color: #D8DAD3;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+}
+
+.descriptografar-form :focus-visible {
+    outline: 3px solid #566246;
+    outline-offset: 3px;
+}
+
+.descriptografar-content > p {
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+.descriptografar-content > .descriptografar-error {
+    padding: 1rem;
+    border: 1px solid currentColor;
+    border-radius: 15px 15px 15px 0;
+    color: #9B3030;
+}
+
+.descriptografar-content > pre {
+    padding: 1rem;
+    border-radius: 15px 15px 15px 0;
+    background-color: #9BB098;
+    color: #283023;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.descriptografar-content > img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+}
