@@ -1,18 +1,26 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Histórico{% endblock %}
 
+{% block css_extra %}
+<link rel="stylesheet" href="{% static 'css/logs.css' %}?v=6">
+<link rel="stylesheet" href="{% static 'css/historico.css' %}">
+{% endblock %}
+
 {% block content %}
+<div class="historico-page d-flex min-vh-100 bg-page">
 
 {% include 'partials/_sidebar.html' %}
 
+<div class="historico-content flex-grow-1 p-4 p-md-5 bg-card">
 <h2>Enviadas</h2>
 {% if enviadas %}
-<ul>
+<ul class="historico-list">
     {% for msg in enviadas %}
     <li>
-        Para: {{ msg.email_destinatario }} — {{ msg.data_envio }}
-        <a href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
+        <span>Para: {{ msg.email_destinatario }} — {{ msg.data_envio }}</span>
+        <a class="btn-menu text-decoration-none" href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
     </li>
     {% endfor %}
 </ul>
@@ -22,15 +30,17 @@
 
 <h2>Recebidas</h2>
 {% if recebidas %}
-<ul>
+<ul class="historico-list">
     {% for msg in recebidas %}
     <li>
-        De: {{ msg.remetente.username }} — {{ msg.data_envio }}
-        <a href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
+        <span>De: {{ msg.remetente.username }} — {{ msg.data_envio }}</span>
+        <a class="btn-menu text-decoration-none" href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
     </li>
     {% endfor %}
 </ul>
 {% else %}
 <p>Nenhuma mensagem recebida ainda.</p>
 {% endif %}
+</div>
+</div>
 {% endblock %}
