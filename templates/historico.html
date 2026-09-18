@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Histórico{% endblock %}
+
+{% block content %}
+
+{% include 'partials/_sidebar.html' %}
+
+<h2>Enviadas</h2>
+{% if enviadas %}
+<ul>
+    {% for msg in enviadas %}
+    <li>
+        Para: {{ msg.email_destinatario }} — {{ msg.data_envio }}
+        <a href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma mensagem enviada ainda.</p>
+{% endif %}
+
+<h2>Recebidas</h2>
+{% if recebidas %}
+<ul>
+    {% for msg in recebidas %}
+    <li>
+        De: {{ msg.remetente.username }} — {{ msg.data_envio }}
+        <a href="{% url 'mensagens:baixar_mensagem' msg.id %}">Baixar</a>
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma mensagem recebida ainda.</p>
+{% endif %}
+{% endblock %}
